@@ -8,23 +8,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div id="parent_heading">
-        <div><span><strong>Tasks </strong></span><span>List</span></div>
-        <button onclick="showAddTask()"><i class="fa-solid fa-circle-plus" style="color: #1364f1;"></i>Add Item</button>
+    <div id="backgroundblur">
+        <header id="headerid">
+            <h1 class="task" id="taskid">Task<span class="list" id="listid"> List</span></h1>
+            <button onclick="additem()" class="additem"><i class="fa-solid fa-circle-plus" style="color: #1364f1;"></i>Add Item</button>
+        </header>
+    </div>    
+        <nav id="navid">
+            <button  class="revertbutton" id="revertbackbutton">Back</button>
+            <div id="cardheading" class="cardheading"></div>
+            <button onclick="additem()" class="additem"><i class="fa-solid fa-circle-plus" style="color: #1364f1;"></i></button>
+        </nav>
+        <div id="selectContainer"></div>
+        <p id="ptag">No item in the list !!!!!</p>  
+    <!-- </div> -->
+    <div id="container" class="cardcontainer"></div>
+  
+    <!-- page 2 : popupbox open -->
+    <div id="popupbox" class="popupbox hide ">
+      
+        <h2 class="h2">Add New List</h2> 
+        <input type="text" id="cardname" class="cardname" placeholder="Add New List" autocomplete="off">
+        <button onclick="addCard()" class="addcard"><i class="fa-solid fa-plus" style="color: #1264f3;"></i></button>
+        <button onclick="hideAddCard()" class="closecard"><i class="fa-solid fa-trash" style="color: #f70808;"></i></button>
     </div>
-    <div id="cardcontainer" class="card_p_container"></div>
-
-
-    <!-- popup box when click on Add item -->
-
-    <div id="popup" class="popupbox hide">
-        <h2>Add New Task</h2>
-        <input id="cardname" type="text">
-        <button onclick="addCard()">Add</button>
-        <button onclick="hideAddTask()">Close</button>
-    </div>
-
-
     <script src="./script.js"></script>
 </body>
 </html>

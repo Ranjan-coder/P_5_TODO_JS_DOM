@@ -1,59 +1,204 @@
-const addTaskPopup = document.getElementById("popup")
-const cardcontainer = document.getElementById("cardcontainer")
-const newCardName = document.getElementById("cardname")
+let addItem = document.getElementById("popupbox")
+let cardContainer = document.getElementById("container")
+let newCardName =document.getElementById("cardname")
+let pTag = document.getElementById("ptag")
+let blurBack = document.getElementById("backgroundblur")
+let selectContainer = document.getElementById("selectContainer") 
+let revertButton = document.getElementById("revertbackbutton")
+let navBar = document.querySelector("nav")
+let cardHeading =document.getElementById("cardheading")
+let headerId = document.getElementById("headerid")
+console.log(newCardName.parentNode);
 
-// this line will give us parent element of input tag 
-console.log(newCardName.parentNode)
+// Additem on first page :open popupbox to add card
 
-// we are creating a card variable
-let cardID=0
-
-// this function for show popupbox when we click on add Task on heading
-function showAddTask(){
-        addTaskPopup.classList.remove("hide")
+function additem()
+{
+      addItem.classList.remove("hide")
+      blurBack.setAttribute("class","blur")
+      pTag.setAttribute("class","blur")
+      cardContainer.style.filter = "blur(5px)"
+      selectContainer.style.filter = "blur(5px)"
+      navBar.style.filter = "blur(5px)"
+     
 }
 
-// this function we use for the close button on popupbox when we click on add item
-function hideAddTask(){
-    addTaskPopup.classList.add("hide")
+// Close Button of popupbox that add card
+function hideAddCard()
+{
+    addItem.classList.add("hide")
+    blurBack.setAttribute("class","undoblur")
+    pTag.setAttribute("class","undoblur")
+    cardContainer.style.filter = "blur(0px)"
+    selectContainer.style.filter = "blur(0px)"
+    navBar.style.filter = "blur(0px)"
 }
+// unique id to each card
+let cardId = 0;
+// card design and push card into card container
 
-// this function we use for the parent container of card
-function addCard(){
-    cardID++;
-    // first we create the variable
-var newCard = document.createElement("div")
-var cardTitle = document.createElement("h2")
-var horizantaLline = document.createElement("hr")
-var itemList = document.createElement("div")
-var deleteButton = document.createElement("button")
-var addItem = document.createElement("button")
+function addCard()
+{
+    
+    cardId++;
+    let createCard = document.createElement("div");
+    let hrLine = document.createElement("hr")
+    let cardName = document.createElement("h2")
+    let divstore = document.createElement("div")
+    let deleteButton = document.createElement("button");
+    let itemAdd = document.createElement("button");
 
-// after creating the variable we append that variable in first div which is our first child container div
-newCard.setAttribute("id",cardID)
-newCard.appendChild(cardTitle)
-newCard.appendChild(horizantaLline)
-newCard.appendChild(itemList)
-newCard.appendChild(deleteButton)
-newCard.appendChild(addItem)
-cardcontainer.appendChild(newCard)
+    createCard.setAttribute("id",cardId);
+    createCard.appendChild(cardName);
+    createCard.appendChild(hrLine);
+    createCard.appendChild(divstore);
+    createCard.appendChild(deleteButton);
+    createCard.appendChild(itemAdd);
+    cardContainer.appendChild(createCard);
 
-// we can use classList or setAttribute to add css property for that container
-newCard.classList.add("card")
+    createCard.classList.add("card")
+    pTag.style.display = "none";
+    cardContainer.style.filter = "blur(5px)"
 
+    cardName.innerText = newCardName.value;
+   
+    //for this eventlistener needed
+    newCardName.value="";
+   
+    // styling for card : inside cardcontainer
+    cardName.classList.add("cardtitle")
+    hrLine.classList.add("hrlineinsidecard")
+    itemAdd.classList.add("itemadd");
+    deleteButton.classList.add("deletebutton");
+    
+// /delete card from card container and same from selectcontainer if it is inside
+    deleteButton.addEventListener('click',function()
+     {
+         createCard.style.display="none";
+         cardHeading.innerText=  "";
+         headerId.style.filter = "blur(0px)"
+         
+     }
+     );
+    // Hide popupbox  after adding single card in card container
+     hideAddCard()
 
-// The input we want inside the container for that we write innertext
-cardTitle.innerText = newCardName.value
-deleteButton.innerText = "Delete"
-addItem.innerText = "+"
+    // addbutton of card we are creating popup2  from where we add item in list
+    
+    itemAdd.addEventListener('click',function()
+    {    
+       
+       let body = document.querySelector("body")
+       let listItem = document.createElement("div")
+       let h2Item = document.createElement("h2")
+       let newItemName = document.createElement("input")
+       let addListItem = document.createElement("button")
+       let closeItem = document.createElement("button")
+   
+       listItem.style.display = "block";
+       listItem.appendChild(newItemName)
+       listItem.appendChild(h2Item)
+       listItem.appendChild(addListItem)
+       listItem.appendChild(closeItem)
+       body.appendChild(listItem)
+      
+      
+       listItem.setAttribute("class","itempopupbox" )
+       cardContainer.style.filter="blur(5px)"
+       selectContainer.style.filter="blur(5px)"
+        
+      
+       h2Item.setAttribute("class","h2item")
+       newItemName.setAttribute("class","newitemname")
+       addListItem.setAttribute("class","addcard")
+       closeItem.setAttribute("class","closecard")
+   
+        h2Item.innerText = "Add New Item";
+        
+        addListItem.innerText = "Add";
+        closeItem.innerText = "Close";
 
-// deleteButton
-// if we want to use function on addEventListener we can use or we will create on that addEventListener
-// like below code
-deleteButton.addEventListener('click',function(){
-    newCard.remove()
-})
+        blurBack.setAttribute("class","blur")
 
-// we add this function to hide poopupbox after we add child container inside parent container
-hideAddTask()
+        // close button of popupbox
+        closeItem.addEventListener("click", () => {
+            listItem.remove();
+            cardContainer.style.filter="blur(0px)"
+            selectContainer.style.filter = "blur(0px)"
+            blurBack.setAttribute("class","undoblur")
+
+           
+      });
+    //   Add button of popupboox
+      
+      addListItem.addEventListener('click',function()
+      {  
+          let itemNameInCard = document.createElement("h3")
+          let markDone = document.createElement("button")
+
+          cardContainer.style.filter="blur(0px)"
+          selectContainer.style.filter="blur(0px)"
+         
+          createCard.style.height ="auto";
+       
+          itemNameInCard.appendChild(markDone)
+          divstore.appendChild(itemNameInCard)
+          divstore.appendChild(markDone)
+        
+  
+       
+         blurBack.setAttribute("class","undoblur")
+         itemNameInCard.setAttribute("class","itemNameincard")
+         markDone.setAttribute("class","markdone")
+        
+          itemNameInCard.innerText =  newItemName.value;
+          markDone.innerHTML = "markdone";
+        
+  
+          divstore.setAttribute("class","innerdivinsidecard")
+          
+          listItem.style.display = "none";
+          createCard.style.height="auto";
+         
+
+        //   markdone cut when activity done
+          markDone.addEventListener('click',function(){
+          markDone.setAttribute("class","linethrough")
+          itemNameInCard.setAttribute("class","textdecoration")
+          
+          })
+
+          }) //closing tag of addListItem
+    } );
+    
+    // for showing only select card in center
+    cardName.addEventListener('click',function()
+    {
+        cardContainer.classList.add("hide");
+        headerId.style.display ="none";
+        navBar.style.display ="flex";
+        cardHeading.innerText=  cardName.innerText;
+        // cardHeading.style.color =" Red"
+        selectContainer.appendChild(createCard)
+
+        // styling container and back button
+       
+        selectContainer.style.display="flex";
+
+    })
+    revertButton.addEventListener('click',function(){
+        Back()
+    })
+    
+ function Back(){
+    selectContainer.style.display="none";
+    cardContainer.classList.remove("hide");
+    navBar.style.display = "none";
+    headerId.style.display ="flex";
+    cardContainer.appendChild(createCard);
+    cardHeading.innerText=  "";
+    selectContainer.innerText =" ";
+    
+    
+ }
 }
