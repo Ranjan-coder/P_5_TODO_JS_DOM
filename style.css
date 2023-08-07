@@ -89,8 +89,8 @@ p{
    position: absolute;
    top:20vh;
    left:8vw;
-   /* color:white; */
-   /* background-image:linear-gradient(230deg,black,gray) ; */
+   background-image:linear-gradient(230deg,rgb(188, 152, 246),rgb(112, 218, 247)) ;
+   border: #3b07f9;
    
 }
 
@@ -106,8 +106,8 @@ p{
    position: absolute;
    top:20vh;
    right:8vw;
-   /* color:white; */
-   /* background-image:linear-gradient(230deg,black,gray) ; */
+   background-image:linear-gradient(230deg,rgb(248, 114, 114),rgb(167, 248, 160)) ;
+   border: #f9abab;
 }
 
 /*for blur background when click on additem button but not :-*/
@@ -195,7 +195,8 @@ p{
    display: none;
    justify-content: center;
    align-items: center; 
-   border:4px solid grey;
+   border:4px solid rgb(156, 219, 248);
+   background-color: #fff;
 
 }
 
