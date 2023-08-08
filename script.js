@@ -139,7 +139,7 @@ function addCard()
           cardContainer.style.filter="blur(0px)"
           selectContainer.style.filter="blur(0px)"
          
-          createCard.style.height ="auto";
+        //   createCard.style.height ="auto";
        
           itemNameInCard.appendChild(markDone)
           divstore.appendChild(itemNameInCard)
@@ -158,7 +158,7 @@ function addCard()
           divstore.setAttribute("class","innerdivinsidecard")
           
           listItem.style.display = "none";
-          createCard.style.height="auto";
+        //   createCard.style.height="auto";
          
 
         //   markdone cut when activity done
